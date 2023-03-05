@@ -1,0 +1,3 @@
+<input type='file' #fontFile (change)="handleFontUpload($event)">
+
+<app-viewer *ngIf="fontArrayBuffer" [fontArrayBuffer]="fontArrayBuffer"></app-viewer>

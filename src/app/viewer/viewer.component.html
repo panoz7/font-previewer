@@ -1,0 +1,33 @@
+<!-- <pre>{{fontInfo.tables.fvar | json}}</pre> -->
+
+<h2 
+    *ngIf="fontFaceLoaded"
+    [ngStyle]="{'font-family': fontFamily}"
+>{{fontFamily}}</h2>
+
+<!-- Axes -->
+
+<h3>Axes:</h3>
+<ul>
+    <li *ngFor="let axis of axes"><b>{{axis.tag}}</b>: {{axis.minValue}} - {{axis.maxValue}}</li>
+</ul>
+
+<h3>Examples:</h3>
+
+<div *ngFor="let instance of fontInfo.tables.fvar.instances">
+    <h4>{{instance.name.en}}</h4>
+    
+    <p [ngStyle]="{
+        'font-family': fontFamily, 
+        'font-weight': instance.coordinates.wght, 
+        'font-stretch': instance.coordinates.wdth
+    }">The quick brown fox jumps over the lazy dog.</p>
+
+    <ul>
+        <li *ngIf="instance.coordinates.wght">font-weight: {{instance.coordinates.wght}}</li>
+        <li *ngIf="instance.coordinates.wdth">font-stretch: {{instance.coordinates.wdth}}</li>
+    </ul>
+
+</div>
+
+
