@@ -13,10 +13,16 @@ export class ViewerComponent implements OnInit {
   fontFaceLoaded = false;
   fontFamily: string;
   axes: any;
+  testStretch: number;
+  testWeight: number;
+  stretchAxis: any;
+  weightAxis: any;
 
   ngOnInit() {
 
   }
+
+ 
 
   ngOnChanges() {
     this.fontInfo = this.getFontData(this.fontArrayBuffer);
@@ -37,10 +43,14 @@ export class ViewerComponent implements OnInit {
     for (let axis of this.axes) {
       if (axis.tag == 'wght') {
         descriptors.weight = `${axis.minValue} ${axis.maxValue}`
+        this.testWeight = axis.minValue;
+        this.weightAxis = axis;
       }
 
       if (axis.tag == 'wdth') {
         descriptors.stretch = `${axis.minValue}% ${axis.maxValue}%`
+        this.testStretch = axis.minValue;
+        this.stretchAxis = axis;
       }
     }
 
@@ -56,6 +66,13 @@ export class ViewerComponent implements OnInit {
 
   }
 
+  updateTestWeight(e) {
+    this.testWeight = e.target.value;
+  }
+
+  updateTestStretch(e) {
+    this.testStretch = e.target.value;
+  }
 
 
 
